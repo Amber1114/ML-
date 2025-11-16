@@ -1,0 +1,62 @@
+<!--pages/transaction/list/list.wxml-->
+<view class="container">
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view 
+      class="filter-item {{filterType === 'all' ? 'active' : ''}}" 
+      data-type="all" 
+      bindtap="switchFilter"
+    >
+      全部
+    </view>
+    <view 
+      class="filter-item {{filterType === 'expense' ? 'active' : ''}}" 
+      data-type="expense" 
+      bindtap="switchFilter"
+    >
+      支出
+    </view>
+    <view 
+      class="filter-item {{filterType === 'income' ? 'active' : ''}}" 
+      data-type="income" 
+      bindtap="switchFilter"
+    >
+      收入
+    </view>
+  </view>
+  
+  <!-- 交易记录列表 -->
+  <view class="transaction-list">
+    <block wx:if="{{transactions.length > 0}}">
+      <view wx:for="{{transactions}}" wx:key="id" class="transaction-item">
+        <view class="transaction-info">
+          <view class="transaction-type">
+            <text class="type-icon">{{item.type === 'expense' ? '📤' : '📥'}}</text>
+            <text class="type-text">{{item.type === 'expense' ? '支出' : '收入'}}</text>
+          </view>
+          <text class="category">{{item.category}}</text>
+          <text class="description">{{item.description || '无描述'}}</text>
+          <text class="date">{{item.dateFormat}}</text>
+        </view>
+        <text class="amount {{item.type === 'expense' ? 'expense' : 'income'}}">
+          {{item.type === 'expense' ? '-' : '+'}}¥{{item.amount.toFixed(2)}}
+        </text>
+      </view>
+    </block>
+    <view wx:else class="empty-list">
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">暂无交易记录</text>
+      <text class="empty-hint">点击右下角按钮添加第一条记录</text>
+    </view>
+  </view>
+  
+  <!-- 加载更多 -->
+  <view wx:if="{{hasMore}}" class="load-more" bindtap="loadMore">
+    <text>{{loading ? '加载中...' : '加载更多'}}</text>
+  </view>
+  
+  <!-- 添加按钮 -->
+  <view class="add-button" bindtap="goToAdd">
+    <text class="add-icon">+</text>
+  </view>
+</view>

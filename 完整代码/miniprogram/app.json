@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/transaction/add/add",
+    "pages/transaction/list/list",
+    "pages/analysis/report/report",
+    "pages/profile/index/index"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/register",
+      "pages": ["register"]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3498db",
+    "navigationBarTitleText": "AI财务健康顾问",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#3498db",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/transaction/add/add",
+        "text": "记账"
+      },
+      {
+        "pagePath": "pages/analysis/report/report",
+        "text": "分析"
+      },
+      {
+        "pagePath": "pages/profile/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

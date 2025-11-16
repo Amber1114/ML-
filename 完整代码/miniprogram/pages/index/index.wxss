@@ -1,0 +1,248 @@
+/* pages/index/index.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 欢迎信息 */
+.welcome-section {
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.welcome-text {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+}
+
+.welcome-subtext {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+  display: block;
+}
+
+/* 财务概览卡片 */
+.overview-card {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-subtitle {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.balance-section {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.balance-label {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.balance-amount {
+  font-size: 60rpx;
+  font-weight: 700;
+  color: #3498db;
+}
+
+.income-expense {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #f0f0f0;
+}
+
+.income {
+  text-align: center;
+}
+
+.income-label {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.income-amount {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #27ae60;
+}
+
+.expense {
+  text-align: center;
+}
+
+.expense-label {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.expense-amount {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #e74c3c;
+}
+
+/* 快捷操作 */
+.quick-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.action-item {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx 20rpx;
+  margin: 0 10rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+.action-item:active {
+  transform: scale(0.98);
+}
+
+.action-icon {
+  font-size: 60rpx;
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.action-text {
+  font-size: 28rpx;
+  color: #333;
+  display: block;
+}
+
+/* 最近记录 */
+.recent-transactions {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.section-more {
+  font-size: 28rpx;
+  color: #3498db;
+}
+
+.transaction-list {
+  margin-top: 20rpx;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-info {
+  flex: 1;
+}
+
+.category {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 5rpx;
+}
+
+.description {
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 20rpx;
+}
+
+.date {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  margin-top: 5rpx;
+}
+
+.amount {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.amount.expense {
+  color: #e74c3c;
+}
+
+.amount.income {
+  color: #27ae60;
+}
+
+/* 空列表提示 */
+.empty-list {
+  text-align: center;
+  padding: 60rpx 20rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999;
+  display: block;
+}

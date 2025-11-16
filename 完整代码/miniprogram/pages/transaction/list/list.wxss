@@ -1,0 +1,167 @@
+/* pages/transaction/list/list.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 120rpx; /* 为底部添加按钮留出空间 */
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 10rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.filter-item {
+  flex: 1;
+  text-align: center;
+  padding: 15rpx;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+  transition: all 0.3s;
+}
+
+.filter-item.active {
+  background-color: #3498db;
+  color: #fff;
+}
+
+/* 交易记录列表 */
+.transaction-list {
+  margin-bottom: 20rpx;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+.transaction-item:active {
+  transform: scale(0.98);
+}
+
+.transaction-info {
+  flex: 1;
+}
+
+.transaction-type {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.type-icon {
+  font-size: 36rpx;
+  margin-right: 10rpx;
+}
+
+.type-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-right: 20rpx;
+}
+
+.category {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-right: 20rpx;
+}
+
+.description {
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 20rpx;
+}
+
+.date {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  margin-top: 5rpx;
+}
+
+.amount {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.amount.expense {
+  color: #e74c3c;
+}
+
+.amount.income {
+  color: #27ae60;
+}
+
+/* 空列表提示 */
+.empty-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 20rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 30rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 添加按钮 */
+.add-button {
+  position: fixed;
+  bottom: 30rpx;
+  right: 30rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.add-button:active {
+  transform: scale(0.95);
+}
+
+.add-icon {
+  font-size: 80rpx;
+  line-height: 120rpx;
+}

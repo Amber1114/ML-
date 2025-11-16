@@ -1,0 +1,75 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 欢迎信息 -->
+  <view class="welcome-section">
+    <text class="welcome-text">您好，{{userInfo ? userInfo.username : '用户'}}</text>
+    <text class="welcome-subtext">欢迎使用AI财务健康顾问</text>
+  </view>
+  
+  <!-- 财务概览卡片 -->
+  <view class="overview-card">
+    <view class="card-header">
+      <text class="card-title">财务概览</text>
+      <text class="card-subtitle">{{currentMonth}}</text>
+    </view>
+    
+    <view class="balance-section">
+      <text class="balance-label">余额</text>
+      <text class="balance-amount">¥{{balance}}</text>
+    </view>
+    
+    <view class="income-expense">
+      <view class="income">
+        <text class="income-label">收入</text>
+        <text class="income-amount">+¥{{income}}</text>
+      </view>
+      <view class="expense">
+        <text class="expense-label">支出</text>
+        <text class="expense-amount">-¥{{expense}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 快捷操作 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToAdd">
+      <text class="action-icon">+</text>
+      <text class="action-text">添加记录</text>
+    </view>
+    <view class="action-item" bindtap="goToTransactionList">
+      <text class="action-icon">📋</text>
+      <text class="action-text">查看记录</text>
+    </view>
+    <view class="action-item" bindtap="goToAnalysis">
+      <text class="action-icon">📊</text>
+      <text class="action-text">财务分析</text>
+    </view>
+  </view>
+  
+  <!-- 最近记录 -->
+  <view class="recent-transactions">
+    <view class="section-header">
+      <text class="section-title">最近记录</text>
+      <text class="section-more" bindtap="goToTransactionList">查看全部</text>
+    </view>
+    
+    <view class="transaction-list">
+      <block wx:if="{{recentTransactions.length > 0}}">
+        <view wx:for="{{recentTransactions}}" wx:key="id" class="transaction-item">
+          <view class="transaction-info">
+            <text class="category">{{item.category}}</text>
+            <text class="description">{{item.description || '无描述'}}</text>
+            <text class="date">{{item.dateFormat}}</text>
+          </view>
+          <text class="amount {{item.type === 'expense' ? 'expense' : 'income'}}">
+            {{item.type === 'expense' ? '-' : '+'}}¥{{item.amount}}
+          </text>
+        </view>
+      </block>
+      <view wx:else class="empty-list">
+        <text class="empty-text">暂无交易记录</text>
+        <text class="empty-hint">点击"添加记录"开始记账</text>
+      </view>
+    </view>
+  </view>
+</view>

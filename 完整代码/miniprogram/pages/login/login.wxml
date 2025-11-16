@@ -1,0 +1,44 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="login-form">
+    <view class="logo">
+      <text class="logo-text">AI财务健康顾问</text>
+    </view>
+    
+    <view class="input-group">
+      <label class="label">用户名</label>
+      <input 
+        class="input" 
+        placeholder="请输入用户名" 
+        bindinput="onUsernameInput"
+        value="{{username}}"
+      />
+    </view>
+    
+    <view class="input-group">
+      <label class="label">密码</label>
+      <input 
+        class="input" 
+        placeholder="请输入密码" 
+        password="true"
+        bindinput="onPasswordInput"
+        value="{{password}}"
+      />
+    </view>
+    
+    <text class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</text>
+    
+    <button class="btn btn-primary" bindtap="login">登录</button>
+    
+    <view class="register-link">
+      <text>还没有账号？</text>
+      <text class="link" bindtap="goToRegister">立即注册</text>
+    </view>
+    
+    <view class="test-account">
+      <text class="test-title">测试账号</text>
+      <text>用户名：test</text>
+      <text>密码：123456</text>
+    </view>
+  </view>
+</view>

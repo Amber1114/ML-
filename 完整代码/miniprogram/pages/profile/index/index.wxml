@@ -1,0 +1,56 @@
+<!-- pages/profile/index/index.wxml -->
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-avatar">
+      <text class="avatar-text">{{userInfo.username.charAt(0).toUpperCase()}}</text>
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{userInfo.username}}</text>
+      <text class="user-since">注册时间：{{userInfo.registeredAt ? userInfo.registeredAt.split(' ')[0] : '-'}}</text>
+    </view>
+  </view>
+
+  <!-- 统计数据卡片 -->
+  <view class="stats-card">
+    <text class="section-title">使用统计</text>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-value">{{statistics.totalTransactions}}</text>
+        <text class="stat-label">总记录数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value income">¥{{statistics.totalIncome.toFixed(2)}}</text>
+        <text class="stat-label">总收入</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value expense">¥{{statistics.totalExpense.toFixed(2)}}</text>
+        <text class="stat-label">总支出</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{statistics.registeredDays}}</text>
+        <text class="stat-label">注册天数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能按钮 -->
+  <view class="action-card">
+    <text class="section-title">功能设置</text>
+    <view class="action-list">
+      <view class="action-item danger" bindtap="clearAllData">
+        <text class="action-text">清除所有数据</text>
+        <text class="action-arrow">›</text>
+      </view>
+      <view class="action-item" bindtap="logout">
+        <text class="action-text">退出登录</text>
+        <text class="action-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text class="version-text">AI财务健康顾问 v1.0.0</text>
+  </view>
+</view>

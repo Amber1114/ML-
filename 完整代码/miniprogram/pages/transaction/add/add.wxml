@@ -1,0 +1,94 @@
+<!--pages/transaction/add/add.wxml-->
+<view class="container">
+  <view class="card">
+    <!-- 交易类型选择 -->
+    <view class="type-selector">
+      <view 
+        class="type-item {{transactionType === 'expense' ? 'active' : ''}}" 
+        data-type="expense" 
+        bindtap="switchType"
+      >
+        <text class="type-icon">📤</text>
+        <text class="type-text">支出</text>
+      </view>
+      <view 
+        class="type-item {{transactionType === 'income' ? 'active' : ''}}" 
+        data-type="income" 
+        bindtap="switchType"
+      >
+        <text class="type-icon">📥</text>
+        <text class="type-text">收入</text>
+      </view>
+    </view>
+    
+    <!-- 金额输入 -->
+    <view class="input-group">
+      <text class="amount-label">金额</text>
+      <input 
+        class="amount-input" 
+        placeholder="0.00" 
+        type="digit"
+        bindinput="onAmountInput"
+        value="{{amount}}"
+      />
+    </view>
+    
+    <!-- 分类选择 -->
+    <view class="category-section">
+      <text class="section-title">分类</text>
+      <view class="category-grid">
+        <block wx:if="{{transactionType === 'expense'}}">
+          <view 
+            wx:for="{{expenseCategories}}" 
+            wx:key="name"
+            class="category-item {{category === item.name ? 'active' : ''}}"
+            data-category="{{item.name}}"
+            bindtap="selectCategory"
+          >
+            <text class="category-icon">{{item.icon}}</text>
+            <text class="category-name">{{item.name}}</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view 
+            wx:for="{{incomeCategories}}" 
+            wx:key="name"
+            class="category-item {{category === item.name ? 'active' : ''}}"
+            data-category="{{item.name}}"
+            bindtap="selectCategory"
+          >
+            <text class="category-icon">{{item.icon}}</text>
+            <text class="category-name">{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    
+    <!-- 描述输入 -->
+    <view class="input-group">
+      <text class="label">描述（可选）</text>
+      <input 
+        class="input" 
+        placeholder="添加描述"
+        bindinput="onDescriptionInput"
+        value="{{description}}"
+      />
+    </view>
+    
+    <!-- 日期选择 -->
+    <view class="input-group">
+      <text class="label">日期</text>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="date-picker">
+          {{date}}
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    
+    <text class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</text>
+    
+    <!-- 保存按钮 -->
+    <button class="btn btn-primary" bindtap="saveTransaction">保存记录</button>
+  </view>
+</view>

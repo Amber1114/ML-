@@ -1,0 +1,246 @@
+<!-- pages/analysis/report/report.wxml -->
+<view class="container">
+  <!-- 财务健康评分 -->
+  <view class="health-score-card">
+    <view class="score-header">
+      <text class="title">财务健康评分</text>
+      <text class="month">{{currentMonth}}</text>
+    </view>
+    <view class="score-content">
+      <view class="score-circle">
+        <text class="score">{{healthScore}}</text>
+        <text class="max-score">/100</text>
+      </view>
+      <text class="level" style="color: {{healthScore >= 90 ? '#27ae60' : healthScore >= 80 ? '#3498db' : healthScore >= 70 ? '#f39c12' : healthScore >= 60 ? '#e67e22' : '#e74c3c'}}">{{healthLevel}}</text>
+    </view>
+  </view>
+
+  <!-- 评估维度详情 -->
+  <view class="assessment-dimensions">
+    <text class="section-title">评估维度详情</text>
+    
+    <!-- 收支结构 -->
+    <view class="dimension-card">
+      <view class="dimension-header">
+        <text class="dimension-title">收支结构</text>
+        <text class="dimension-score">{{assessmentDetails.incomeStructureScore || 0}}/30</text>
+      </view>
+      <view class="dimension-progress">
+        <view class="progress-bar" style="width: {{assessmentDetails.incomeStructureScore / 30 * 100}}%" wx:if="{{assessmentDetails.incomeStructureScore > 0}}"></view>
+      </view>
+      <view class="dimension-indicators">
+        <view class="indicator-item">
+          <text class="indicator-name">储蓄率</text>
+          <text class="indicator-value">{{assessmentDetails.savingsRate || '0'}}%</text>
+        </view>
+        <view class="indicator-item">
+          <text class="indicator-name">收入稳定性</text>
+          <text class="indicator-value">{{assessmentDetails.incomeStability || '0'}}%</text>
+        </view>
+        <view class="indicator-item">
+          <text class="indicator-name">消费占比</text>
+          <text class="indicator-value">{{assessmentDetails.expenseRatio || '0'}}%</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 资产负债状况 -->
+    <view class="dimension-card">
+      <view class="dimension-header">
+        <text class="dimension-title">资产负债状况</text>
+        <text class="dimension-score">{{assessmentDetails.assetLiabilityScore || 0}}/25</text>
+      </view>
+      <view class="dimension-progress">
+        <view class="progress-bar" style="width: {{assessmentDetails.assetLiabilityScore / 25 * 100}}%" wx:if="{{assessmentDetails.assetLiabilityScore > 0}}"></view>
+      </view>
+      <view class="dimension-indicators">
+        <view class="indicator-item">
+          <text class="indicator-name">总资产</text>
+          <text class="indicator-value">¥{{assessmentDetails.totalAssets || 0}}</text>
+        </view>
+        <view class="indicator-item">
+          <text class="indicator-name">总债务</text>
+          <text class="indicator-value">¥{{assessmentDetails.totalDebt || 0}}</text>
+        </view>
+        <view class="indicator-item">
+          <text class="indicator-name">债务收入比</text>
+          <text class="indicator-value">{{assessmentDetails.debtToIncomeRatio || '0'}}%</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 财务安全保障 -->
+    <view class="dimension-card">
+      <view class="dimension-header">
+        <text class="dimension-title">财务安全保障</text>
+        <text class="dimension-score">{{assessmentDetails.financialSecurityScore || 0}}/20</text>
+      </view>
+      <view class="dimension-progress">
+        <view class="progress-bar" style="width: {{assessmentDetails.financialSecurityScore / 20 * 100}}%" wx:if="{{assessmentDetails.financialSecurityScore > 0}}"></view>
+      </view>
+      <view class="dimension-indicators">
+        <view class="indicator-item">
+          <text class="indicator-name">应急基金月数</text>
+          <text class="indicator-value">{{assessmentDetails.emergencyFundMonths || 0}}个月</text>
+        </view>
+        <view class="indicator-item">
+          <text class="indicator-name">流动性比率</text>
+          <text class="indicator-value">{{assessmentDetails.liquidityRatio || 0}}x</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 消费行为分析 -->
+    <view class="dimension-card">
+      <view class="dimension-header">
+        <text class="dimension-title">消费行为分析</text>
+        <text class="dimension-score">{{assessmentDetails.consumptionBehaviorScore || 0}}/15</text>
+      </view>
+      <view class="dimension-progress">
+        <view class="progress-bar" style="width: {{assessmentDetails.consumptionBehaviorScore / 15 * 100}}%" wx:if="{{assessmentDetails.consumptionBehaviorScore > 0}}"></view>
+      </view>
+      <view class="dimension-indicators">
+        <view class="indicator-item">
+          <text class="indicator-name">消费多样性</text>
+          <text class="indicator-value">{{assessmentDetails.expenseDiversity || 0}}类</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 长期财务规划 -->
+    <view class="dimension-card">
+      <view class="dimension-header">
+        <text class="dimension-title">长期财务规划</text>
+        <text class="dimension-score">{{assessmentDetails.longTermPlanningScore || 0}}/10</text>
+      </view>
+      <view class="dimension-progress">
+        <view class="progress-bar" style="width: {{assessmentDetails.longTermPlanningScore / 10 * 100}}%" wx:if="{{assessmentDetails.longTermPlanningScore > 0}}"></view>
+      </view>
+      <view class="dimension-indicators">
+        <view class="indicator-item">
+          <text class="indicator-name">资产收入比</text>
+          <text class="indicator-value">{{assessmentDetails.assetToIncomeRatio || '0'}}x</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 月度收支统计 -->
+  <view class="stats-card">
+    <text class="section-title">月度收支统计</text>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-label">收入</text>
+        <text class="stat-value income">¥{{stats.income}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">支出</text>
+        <text class="stat-value expense">¥{{stats.expense}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">结余</text>
+        <text class="stat-value balance">{{stats.balance >= 0 ? '+' : ''}}¥{{stats.balance}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 年度收支统计 -->
+  <view class="stats-card">
+    <text class="section-title">年度收支统计（{{currentYear}}）</text>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-label">总收入</text>
+        <text class="stat-value income">¥{{annualStats.income}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">总支出</text>
+        <text class="stat-value expense">¥{{annualStats.expense}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">年度结余</text>
+        <text class="stat-value balance">{{annualStats.balance >= 0 ? '+' : ''}}¥{{annualStats.balance}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 消费分类占比 -->
+  <view class="chart-card">
+    <text class="section-title">消费分类占比</text>
+    <canvas canvas-id="categoryChart" class="chart"></canvas>
+    <view class="category-list">
+      <block wx:for="{{chartData.categoryData}}" wx:key="name">
+        <view class="category-item">
+          <view class="category-info">
+            <text class="category-name">{{item.name}}</text>
+            <text class="category-percentage">{{item.percentage}}%</text>
+          </view>
+          <view class="category-bar">
+            <view class="bar-fill" style="width: {{item.percentage}}%;"></view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 消费趋势 -->
+  <view class="chart-card">
+    <text class="section-title">消费趋势（过去6个月）</text>
+    <canvas canvas-id="trendChart" class="trend-chart"></canvas>
+  </view>
+
+  <!-- 下个月收支预测 -->
+  <view class="prediction-card">
+    <text class="section-title">下个月收支预测</text>
+    <view class="prediction-header">
+      <view class="stat-item">
+        <text class="stat-label">预测收入</text>
+        <text class="stat-value income">¥{{nextMonthPrediction.predictedIncome}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">预测支出</text>
+        <text class="stat-value expense">¥{{nextMonthPrediction.predictedExpense}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">预测结余</text>
+        <text class="stat-value balance">{{nextMonthPrediction.predictedBalance >= 0 ? '+' : ''}}¥{{nextMonthPrediction.predictedBalance}}</text>
+      </view>
+    </view>
+    
+    <view class="stable-expenses">
+      <text class="subsection-title">稳定支出明细</text>
+      <view class="expense-list">
+        <block wx:for="{{nextMonthPrediction.stableExpenses}}" wx:for-item="amount" wx:for-index="category" wx:key="category">
+          <view class="expense-item">
+            <text class="expense-category">{{category}}</text>
+            <text class="expense-amount">¥{{amount}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    
+    <view class="prediction-advice">
+      <text class="subsection-title">消费建议</text>
+      <view class="advice-list">
+        <block wx:for="{{nextMonthAdvice}}" wx:key="index">
+          <view class="advice-item">
+            <text class="advice-icon">💡</text>
+            <text class="advice-text">{{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI智能理财建议 -->
+  <view class="advice-card">
+    <text class="section-title">AI智能理财建议</text>
+    <view class="advice-list">
+      <block wx:for="{{aiAdvice}}" wx:key="index">
+        <view class="advice-item">
+          <text class="advice-icon">💡</text>
+          <text class="advice-text">{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
